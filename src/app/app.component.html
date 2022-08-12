@@ -5,8 +5,13 @@
     <div class="col-md-6">
 
       <h3>Mi lista de proyectos</h3>
-      <div *ngFor="let proyecto of proyectos">
+
+      <div class="my-5"></div>
+
+      <div *ngFor="let proyecto of proyectos" class="card mb-3">
+
         <div class="card-body">
+        
           <div class="d-flex justify-content-between">
             <div class="fw-bold">{{ proyecto.nombre }}</div>
 
@@ -15,7 +20,18 @@
               <i class="fa fa-trash ms-2 cursor-pointed" title="Eliminar Proyecto"></i>
             </div>
           </div>
-          <div>{{ proyecto.completado ? 'Completado' : 'Pendiente' }}</div>
+
+          <div>
+              <small class="text-success" *ngIf="proyecto.completado; else noCompletado">
+                <i class="fa fa-check-circle"></i> Completado
+              </small>
+              <ng-template #noCompletado>
+                <small class="text-muted">
+                  <i class="fa fa-clock"></i> Pendiente
+                </small>
+              </ng-template>
+          </div>
+              
         </div>
         
       </div>
